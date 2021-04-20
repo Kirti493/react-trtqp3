@@ -1,5 +1,13 @@
 body {
   background-color: #c8d0d2;
+  margin: 0;
+}
+
+.card-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .card {
@@ -12,7 +20,6 @@ body {
   background-color: white;
   transform-style: preserve-3d;
   height: 150px;
-  width: 150px;
   transition: 150ms;
   cursor: pointer;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0))
@@ -56,4 +63,3 @@ body {
 .flashcard-options:first-child {
   margin-top: 0;
 }
- 
