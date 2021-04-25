@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Flashcard({ flashcard }) {
   const [flip, setFlip] = useState(false);
+
+  const frontEl = useRef();
+  const backEl = useRef();
+
+  function setMaaxHeight() {
+    const frontHeight = frontEl.current.getBoundigClientReact().height;
+    const backHeight = backEl.current.getBoundigClientReact().height;
+    Math.max(frontHeight, backHeight, 100);
+  }
 
   return (
     <div
@@ -10,7 +19,7 @@ export default function Flashcard({ flashcard }) {
         setFlip(!flip);
       }}
     >
-      <div className="front">
+      <div className="front" ref={frontEl}>
         {flashcard.question}
         <div className="flashcard-options">
           {flashcard.options.map(option => {
@@ -18,7 +27,9 @@ export default function Flashcard({ flashcard }) {
           })}
         </div>
       </div>
-      <div className="back">{flashcard.answer}</div>
+      <div className="back" ref={backEl}>
+        {flashcard.answer}
+      </div>
     </div>
   );
 }
