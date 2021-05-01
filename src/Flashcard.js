@@ -2,19 +2,27 @@ import React, { useState, useEffect, useRef } from "react";
 
 export default function Flashcard({ flashcard }) {
   const [flip, setFlip] = useState(false);
+  const [height, setHeight] = useState("initial");
 
   const frontEl = useRef();
   const backEl = useRef();
 
-  function setMaaxHeight() {
+  function setMaxHeight() {
     const frontHeight = frontEl.current.getBoundigClientReact().height;
     const backHeight = backEl.current.getBoundigClientReact().height;
-    Math.max(frontHeight, backHeight, 100);
+    setHeight(Math.max(frontHeight, backHeight, 100));
   }
+
+  useEffect(setMaxHeight, [
+    flashcard.question,
+    flashcard.answer,
+    flashcard.options
+  ]);
 
   return (
     <div
       className={`card ${flip ? "flip" : ""}`}
+      style={{ height: height }}
       onClick={() => {
         setFlip(!flip);
       }}
