@@ -8,8 +8,8 @@ export default function Flashcard({ flashcard }) {
   const backEl = useRef();
 
   function setMaxHeight() {
-    const frontHeight = frontEl.current.getBoundigClientReact().height;
-    const backHeight = backEl.current.getBoundigClientReact().height;
+    const frontHeight = frontEl.current.getBoundingClientReact().height;
+    const backHeight = backEl.current.getBoundingClientReact().height;
     setHeight(Math.max(frontHeight, backHeight, 100));
   }
 
